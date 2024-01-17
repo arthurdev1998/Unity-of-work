@@ -9,18 +9,22 @@ namespace DesignerUnityOfWork.Data.Repositories;
 public class UnitOfWork : IUnityOfWork
 {
     private readonly AppDbContext _context;
+    public MovieRepository MovieRepository { get; private set; }
     public UnitOfWork(AppDbContext context)
     {
         _context = context;
+        this.MovieRepository = new MovieRepository(_context);
     }
 
-    public Task Commit()
+
+
+    public async Task Commit()
     {
-        throw new NotImplementedException();
+        await _context.SaveChangesAsync();
     }
 
     public void Dispose()
     {
-        throw new NotImplementedException();
+        _context.Dispose();
     }
 }

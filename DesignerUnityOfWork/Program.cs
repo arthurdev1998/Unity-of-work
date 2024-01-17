@@ -1,6 +1,7 @@
 using DesignerUnityOfWork.Data;
 using DesignerUnityOfWork.Data.Repositories;
 using DesignerUnityOfWork.Interfaces;
+using DesignerUnityOfWork.Interfaces.Repositories;
 using DesignerUnityOfWork.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connection));
 
 builder.Services.AddScoped<IDirectorRepository, DirectorRepository>();
-builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IUnityOfWork, UnitOfWork>();
 
 
 
